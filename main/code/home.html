@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=1920, initial-scale=1.0">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <link href="style.css" rel="stylesheet" />
-  <script src="script.js"></script>
-  
+
+
   <title>Seriex</title>
 </head>
 
@@ -59,7 +61,7 @@
       </div>
     </div>
   </nav>
-  
+
   <div style="padding-top: 2%;" class="col-8 offset-2">
     <div class="row">
       <!-- Nisam siguran da li data-interval zapravo radi u Bootstrap 5, bolje ukloniti mozda nakon testiranja? -->
@@ -83,49 +85,39 @@
     <!-- Sve se ovo dole moze ulepsati kasnije. Trenutno je bitno da radi, prave slike kasnije moze ubacivati -->
     <div class="row">
       <div>
-        <h2>Popularno</h2>
+        <h2>Popularne TV emisije</h2>
         <!-- Swiper deo -->
         <div>
           <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-              <!-- Primer obicnog slajda sa Swiper.js -->
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/550">
-              </div>
-              <!-- Primer slajda koji se moze kliknuti (obratiti paznju na <a>) -->
-              <!-- btw sve slike su onoliko visoke koliko i najvisa - Predlog je neka CSS klasa da ogranici visinu na ~500px -->
-              <div class="swiper-slide">
-                <a href="#">
-                  <img src="https://via.placeholder.com/550">
-              </div>
-              </a>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-              <div class="swiper-slide">
-                <img src="https://via.placeholder.com/450">
-              </div>
-
+            <div class="swiper-wrapper" id="popular-tv">
+              <!-- Autogenerisano ovde -->
             </div>
             <!-- <div class="swiper-pagination"></div> :: Tackica na dnu -->
+            <!-- Strelice -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
         </div>
       </div>
+      <br><br><br>123
+    </div>
+    <div class="row">
+      <div>
+        <h2>Popularni filmovi</h2>
+        <!-- Swiper deo -->
+        <div>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="popular-mov">
+              <!-- Autogenerisano ovde -->
+            </div>
+            <!-- <div class="swiper-pagination"></div> :: Tackica na dnu -->
+            <!-- Strelice -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+      <br><br><br>123
     </div>
   </div>
 
@@ -134,34 +126,43 @@
 
   <!-- Initialize Swiper - JavaScript deo -->
   <script>
-    var swiper = new Swiper(".mySwiper", {
+    const swiper = new Swiper(".mySwiper", {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
       // Default slucaj; kada je prozor  < 320px
+      slidesPerGroup: 1, // Koliko slajdova strelica da pomera
       slidesPerView: 1,
       spaceBetween: 5,
       breakpoints: {
         320: {
+          slidesPerGroup: 1,
           slidesPerView: 2,
           spaceBetween: 10
         },
         // kada je prozor >= 480px
         480: {
+          slidesPerGroup: 2,
           slidesPerView: 3,
           spaceBetween: 10
         },
         // kada je prozor  >= 640px
         640: {
-          slidesPerView: 4,
+          slidesPerGroup: 3,
+          slidesPerView: 3,
           spaceBetween: 12
         },
         // kada je prozor  >= 900px
         900: {
+          slidesPerGroup: 4,
           slidesPerView: 5,
           spaceBetween: 5
         }
       }
     });
   </script>
-
+  <script src="script.js"></script>
 </body>
 
 </html>
