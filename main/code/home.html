@@ -1,209 +1,167 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="style.css" rel="stylesheet" />
-    <script src="script.js"></script>
-    <title>Seriex</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link href="style.css" rel="stylesheet" />
+  <script src="script.js"></script>
+  
+  <title>Seriex</title>
 </head>
+
 <body background="pozadina.jfif" class="fluid-container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid" >
-            <a  style="position:relative" class="navbar-brand" href="#">SERIEX</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Pocetna</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a style="position:relative" class="navbar-brand" href="#">SERIEX</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Pocetna</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Zanr
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Komedija</a></li>
+              <li><a class="dropdown-item" href="#">Akcija</a></li>
+              <li><a class="dropdown-item" href="#">Horor</a></li>
+              <li><a class="dropdown-item" href="#">Ljubav</a></li>
+              <li>
+                <hr class="dropdown-divider">
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Zanr
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Komedija</a></li>
-                  <li><a class="dropdown-item" href="#">Akcija</a></li>
-                  <li><a class="dropdown-item" href="#">Horor</a></li>
-                  <li><a class="dropdown-item" href="#">Ljubav</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
-              <li class="nav-item">
-                
-              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Pretraga</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-      <div style="padding-left: 15%; padding-right: 15%; padding-top: 2%;">
-      <div class="row">
-        <div data-interval= "5000" id="carouselExampleSlidesOnly" class="carousel slide carousel-size" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!--<div class="carousel-caption trickcenter">
-                    <div class="site-heading trickcenter card">
-                        <h1 >Seriex</h1>
-                        <span  style="font-size: 150%;" class="subheading">gledajte serije besplatno</span>
-                    </div>
-                </div>-->
-              <div class="carousel-item active">
-                <img src="./../mrrobot.jfif" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="./../peaky-blinders-1.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="./../vis-a-vis.jpg" class="d-block w-100" alt="...">
-              </div>
-            </div>
-          </div>
-      </div>
-      
-      <div class="row" >
-        <div class="carousel-container slike">
-            <h2>Popularno</h2>
-            <div class="carousel-inner">
-              <div class="track">
-                <div class="card-container">
-                  <div class="card">
-                    <img class="img" src="./../euphoria.jpg">
-                    <div class="info">
-                      Euphoria
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <img class="img" src="./../arcane.jpg">
-                    <div class="info">
-                      Arcane
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <img class="img" src="./../umbrella.jpeg">
-                    <div class="info">
-                      Umbrella academy
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <img class="img" src="./../qg.jpg">
-                    <div class="info">
-                      Queens gambit
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <img class="img" src="./../elite.jpg">
-                    <div class="info">
-                      Elite
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <img class="img" src="./../startup.jpg">
-                    <div class="info">
-                      Startup
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">7</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">8</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">9</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">9</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">9</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">9</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">9</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-                <div class="card-container">
-                  <div class="card">
-                    <div class="img">9</div>
-                    <div class="info">
-                      Title 1
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="nav">
-              <button class="prev">
-                <i class="material-icons">
-                keyboard_arrow_left
-                </i>
-              </button>
-              <button class="next">
-                <i class="material-icons">
-                keyboard_arrow_right
-                </i>
-              </button>
-            </div>
-          </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+          <li class="nav-item">
+
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Pretraga</button>
+        </form>
       </div>
     </div>
+  </nav>
+  
+  <div style="padding-top: 2%;" class="col-8 offset-2">
+    <div class="row">
+      <!-- Nisam siguran da li data-interval zapravo radi u Bootstrap 5, bolje ukloniti mozda nakon testiranja? -->
+      <div data-interval="5000" id="carouselExampleSlidesOnly" class="carousel slide carousel-size"
+        data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <img src="./../mrrobot.jfif" class="d-block w-100" alt="Mr Robot slika">
+          </div>
+          <div class="carousel-item">
+            <img src="./../peaky-blinders-1.jpg" class="d-block w-100" alt="Peaky Blinders slika">
+          </div>
+          <div class="carousel-item">
+            <img src="./../vis-a-vis.jpg" class="d-block w-100" alt="Vis a Vis slika">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Sve se ovo dole moze ulepsati kasnije. Trenutno je bitno da radi, prave slike kasnije moze ubacivati -->
+    <div class="row">
+      <div>
+        <h2>Popularno</h2>
+        <!-- Swiper deo -->
+        <div>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <!-- Primer obicnog slajda sa Swiper.js -->
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/550">
+              </div>
+              <!-- Primer slajda koji se moze kliknuti (obratiti paznju na <a>) -->
+              <!-- btw sve slike su onoliko visoke koliko i najvisa - Predlog je neka CSS klasa da ogranici visinu na ~500px -->
+              <div class="swiper-slide">
+                <a href="#">
+                  <img src="https://via.placeholder.com/550">
+              </div>
+              </a>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+              <div class="swiper-slide">
+                <img src="https://via.placeholder.com/450">
+              </div>
+
+            </div>
+            <!-- <div class="swiper-pagination"></div> :: Tackica na dnu -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper - JavaScript deo -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      // Default slucaj; kada je prozor  < 320px
+      slidesPerView: 1,
+      spaceBetween: 5,
+      breakpoints: {
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 10
+        },
+        // kada je prozor >= 480px
+        480: {
+          slidesPerView: 3,
+          spaceBetween: 10
+        },
+        // kada je prozor  >= 640px
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 12
+        },
+        // kada je prozor  >= 900px
+        900: {
+          slidesPerView: 5,
+          spaceBetween: 5
+        }
+      }
+    });
+  </script>
+
 </body>
+
 </html>
