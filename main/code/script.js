@@ -2,7 +2,7 @@
 const TMDB_API_KEY = "278d563fdce160e602424792006255e9"
 const base_url = "http://image.tmdb.org/t/p/original"
 
-var popular_tv = `https://api.themoviedb.org/3/tv/popular?api_key=278d563fdce160e602424792006255e9&language=en-US&page=1`
+var popular_tv = `https://api.themoviedb.org/3/tv/popular?api_key=${TMDB_API_KEY}&language=en-US&page=1`
 var popular_mov = `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&language=en-US&page=1`
 
 // TODO: Pretvoriti u 1 funkciju?
@@ -18,12 +18,6 @@ async function fetchPopularMovies() {
   return movies
 }
 
-
-async function fetchTVPosterByID(tv_id) {
-    const response = fetch(`https://api.themoviedb.org/3/tv/${tv_id}/images?api_key=${TMDB_API_KEY}&language=en-US`)
-    return await response
-}
-
 $(document).ready(async function () {
     console.log(TMDB_API_KEY)
     const popular_tv_html = document.getElementById("popular-tv");
@@ -36,7 +30,7 @@ $(document).ready(async function () {
 
         popular_tv_html.innerHTML += `              
         <div class="swiper-slide">
-            <a href="#">
+            <a href="${'object.html' + '?tv_id=' + show.id}">
                 <img src="${poster_uri}">
             </a>
         </div>` 
@@ -46,7 +40,7 @@ $(document).ready(async function () {
 
         popular_mov_html.innerHTML += `              
         <div class="swiper-slide">
-            <a href="#">
+            <a href="${'object.html' + '?mov_id=' + movie.id}">
                 <img src="${poster_uri}">
             </a>
         </div>` 
