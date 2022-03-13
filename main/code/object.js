@@ -24,11 +24,11 @@ $(document).ready(async function () {
     if (searchParams.has('tv_id')) {
         let param = searchParams.get('tv_id')
         var show = await getShowByID(param)
-        a.innerHTML = "<b>Sav info koji imamo o ovoj seriji:</b><br>" + JSON.stringify(show)
+        a.innerHTML += "<b>Sav info koji imamo o ovoj seriji:</b><br>" + JSON.stringify(show)
     }
     else if (searchParams.has('mov_id')) {
         let param = searchParams.get('mov_id')
         var movie = await getMovieByID(param)
-        a.innerHTML = "<b>Sav info koji imamo o ovom filmu:</b><br>" + JSON.stringify(movie)
+        a.innerHTML += "<b>Sav info koji imamo o ovom filmu:</b><br>" + JSON.stringify(movie)
     }
 })
