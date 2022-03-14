@@ -31,8 +31,29 @@ function getTrailer(results) {
         // console.log(obj)
         if (obj.official) {
             return "https://www.youtube.com/watch?v=" + (obj.key)
-        } else if (i+1 == results.length && trailer_link == "") {
+        } else if (i+1 == results.length) {
             return "https://www.youtube.com/watch?v=" + (obj.key)
+        }
+    }
+}
+
+async function searchWrap(s_str) {
+    let search_req = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${s_str}&page=1&include_adult=false`
+    const response = fetch(search_req)
+    let a = (await response).json()
+    return a
+}
+
+async function IDFromSearch(search_string) {
+    results = (await searchWrap(search_string)).results
+    if (results.length == 0 || results[0].media_type == 'person') {
+        alert("Uneta serija ili film nije pronadjen!")
+        return window.location.href
+    } else {
+        if (results.media_type == 'movie') {
+            return `object.html?mov_id=${results[0].id}`
+        } else {
+            return `object.html?tv_id=${results[0].id}`
         }
     }
 }
@@ -60,12 +81,15 @@ $(document).ready(async function () {
         }
         let trailers = await fetchShowTrailer(param);
         var trailer_link = getTrailer(trailers.results)
-
+        let tagline = ""
+        if (show.tagline != tagline) {
+            tagline = `"${show.tagline}"`
+        }
         // a.innerHTML += "<b>Sav info koji imamo o ovoj seriji:</b><br>" + JSON.stringify(show)
         header.innerHTML = `
         <a href=${show.homepage} class="text-center text-danger">
             <h2>${show.name + second_name}</h2>
-            <h3><i>"${show.tagline}"</i></h3>
+            <h3><i>${tagline}</i></h3>
         </a>
         <hr>
         <img src="${"http://image.tmdb.org/t/p/original" + show.backdrop_path}" class="img-fluid d-block mx-auto" style="max-width: 100%; height: auto;">
@@ -82,10 +106,13 @@ $(document).ready(async function () {
             <li>Rejting: ${show.vote_average}/10 ★</li>
         </table>
         </p>`
-        trailer.innerHTML = `
-        <a href="${trailer_link}" target="_blank">
-            <button class="col-2 btn-close-white btn-outline-info">Trejler</button>
-        </a>`
+
+        if (typeof trailer_link != "undefined") {
+            trailer.innerHTML = `
+            <a href="${trailer_link}" target="_blank">
+                <button class="col-2 btn-close-white btn-outline-info">Trejler</button>
+            </a>`
+        }
     }
     else if (searchParams.has('mov_id')) {
         let param = searchParams.get('mov_id')
@@ -103,7 +130,7 @@ $(document).ready(async function () {
         // a.innerHTML += "<b>Sav info koji imamo o ovoj seriji:</b><br>" + JSON.stringify(show)
         header.innerHTML = `
         <a href=${movie.homepage} class="text-center text-danger">
-            <h2>${movie.name + second_name}</h2>
+            <h2>${movie.title + second_name}</h2>
             <h3><i>"${movie.tagline}"</i></h3>
         </a>
         <hr>
@@ -119,19 +146,32 @@ $(document).ready(async function () {
             }
 
         }
+        budget = "Nepoznato"
+        if (movie.budget != 0) {
+            budget = movie.budget + " USD"
+        }
         info.innerHTML = `
         <br>
         <h2>Informacije:</h2>
         <p>
         <table>
-            <li>Budzet: ${movie.budget} USD</li>
+            <li>Budzet: ${budget}</li>
             <li>Zanrovi filma: ${zanrovi}</li>
             <li>Rejting: ${movie.vote_average}/10 ★</li>
         </table>
         </p>`
+
+        if (typeof trailer_link != "undefined") {
         trailer.innerHTML = `
         <a href="${trailer_link}" target="_blank">
             <button class="col-2 btn-close-white btn-outline-info">Trejler</button>
         </a>`
+        }
     }
+})
+$("#search-bar").submit(async function (event) {
+    event.preventDefault()
+    var values = $("#mySearchBar").val()
+    let target = await IDFromSearch(values)
+    window.location.replace(target)
 })

@@ -18,6 +18,27 @@ async function fetchPopularMovies() {
   return movies
 }
 
+async function searchWrap(s_str) {
+    let search_req = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${s_str}&page=1&include_adult=false`
+    const response = fetch(search_req)
+    let a = (await response).json()
+    return a
+}
+
+async function IDFromSearch(search_string) {
+    results = (await searchWrap(search_string)).results
+    if (results.length == 0 || results[0].media_type == 'person') {
+        alert("Uneta serija ili film nije pronadjen!")
+        return window.location.href
+    } else {
+        if (results.media_type == 'movie') {
+            return `object.html?mov_id=${results[0].id}`
+        } else{
+            return `object.html?tv_id=${results[0].id}`
+        }
+    }
+}
+
 $(document).ready(async function () {
     console.log(TMDB_API_KEY)
     const popular_tv_html = document.getElementById("popular-tv");
@@ -46,4 +67,10 @@ $(document).ready(async function () {
         </div>` 
     });
 })
-
+$("#search-bar").submit(async function (event) {
+    event.preventDefault()
+    var values = $("#mySearchBar").val()
+    let target = await IDFromSearch(values)
+    window.location.replace(target)
+    
+})
