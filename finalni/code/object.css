@@ -1,0 +1,15 @@
+/* Ovde ide CSS za object.html tj. ono kada se klikne na seriju/film */
+
+.naslov {
+    background-color:rgba(110, 108, 108, 0.85);
+    color:white;
+    margin: auto;
+    width:fit-content;
+    height:fit-content;
+    left: 10%;
+    right: 10%;
+    margin-top:1em;
+}
+a:link {
+    text-decoration: none;
+}

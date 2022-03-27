@@ -1,0 +1,173 @@
+const TMDB_API_KEY = "278d563fdce160e602424792006255e9"
+const base_img_url = "http://image.tmdb.org/t/p/original"
+const base_url = "https://api.themoviedb.org/3/"
+
+async function getMovieByID(id) {
+    let fetch_address = base_url + 'movie/' + id + "?api_key=" + TMDB_API_KEY + "&language=en-US"
+    request = (await fetch(fetch_address)).json()
+    return request
+}
+async function getShowByID(id) {
+    let fetch_address = base_url + 'tv/' + id + "?api_key=" + TMDB_API_KEY + "&language=en-US"
+    request = (await fetch(fetch_address)).json()
+    return request
+}
+
+async function fetchShowTrailer(id) {
+    let fetch_address = base_url + 'tv/' + id + "/videos?api_key=" + TMDB_API_KEY + "&language=en-US"
+    request = (await fetch(fetch_address)).json()
+    return request
+}
+
+async function fetchMovieTrailer(id) {
+    let fetch_address = base_url + 'movie/' + id + "/videos?api_key=" + TMDB_API_KEY + "&language=en-US"
+    request = (await fetch(fetch_address)).json()
+    return request
+}
+
+function getTrailer(results) {
+    for (var i = 0; i < results.length; i++) {
+        var obj = results[i]
+        if (obj.official) {
+            return "https://www.youtube.com/watch?v=" + (obj.key)
+        } else if (i+1 == results.length) {
+            return "https://www.youtube.com/watch?v=" + (obj.key)
+        }
+    }
+}
+
+async function searchWrap(s_str) {
+    let search_req = `https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${s_str}&page=1&include_adult=false`
+    const response = fetch(search_req)
+    let a = (await response).json()
+    return a
+}
+
+async function IDFromSearch(search_string) {
+    results = (await searchWrap(search_string)).results
+    if (results.length == 0 || results[0].media_type == 'person') {
+        alert("Uneta serija ili film nije pronadjen!")
+        return window.location.href
+    } else {
+        if (results.media_type == 'movie') {
+            return `object.html?mov_id=${results[0].id}`
+        } else {
+            return `object.html?tv_id=${results[0].id}`
+        }
+    }
+}
+
+
+$(document).ready(async function () {
+    let a = document.getElementById('details')
+    let header = document.getElementById('object_header')
+    let info = document.getElementById('informacije')
+    let pregled = document.getElementById('pregled')
+    let trailer = document.getElementById('trailer')
+
+    let searchParams = new URLSearchParams(window.location.search)
+    if (searchParams.has('tv_id')) {
+        let param = searchParams.get('tv_id')
+        var show = await getShowByID(param)
+        let second_name = ""
+        if (show.name != show.original_name) {
+            second_name = ` (${show.original_name})`
+        }
+        let trailers = await fetchShowTrailer(param);
+        var trailer_link = getTrailer(trailers.results)
+        let tagline = ""
+        if (show.tagline != tagline) {
+            tagline = `"${show.tagline}"`
+        }
+        header.innerHTML = `
+        <div class="naslov">
+        <a href=${show.homepage} class="text-center text-danger">
+            <h2 style="color:white">${show.name + second_name}</h2>
+            <h3 style="color:white"><i>${tagline}</i></h3>
+        </a>
+        </div>
+        <hr>
+        <img src="${"http://image.tmdb.org/t/p/original" + show.backdrop_path}" class="img-fluid d-block mx-auto" style="max-width: 100%; height: auto;">
+        `
+
+        pregled.innerHTML = show.overview
+        info.innerHTML = `
+        <br>
+        <h2>Emitovanje:</h2>
+        <p>
+        <table>
+            <li>Prva epizoda: ${show.first_air_date} (Season 1, Ep. 1)</li>
+            <li>Poslednja epizoda: ${show.last_air_date} (Season ${show.last_episode_to_air.season_number}, Ep. ${show.last_episode_to_air.episode_number})</li>
+            <li>Rejting: ${show.vote_average}/10 ★</li>
+        </table>
+        </p>`
+        if (typeof trailer_link != "undefined") {
+            trailer.innerHTML=`<iframe width="560" height="315" src="${trailer_link}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <hr>
+            <a href="${trailer_link}" target="_blank">
+                <button class="col-2 btn-close-white btn-outline-info">Trejler</button>
+            </a>`
+        }
+    }
+    else if (searchParams.has('mov_id')) {
+        let param = searchParams.get('mov_id')
+        var movie = await getMovieByID(param)
+        let second_name = ""
+        if (movie.name != movie.original_name) {
+            second_name = ` (${movie.original_name})`
+        }
+
+        let trailers = await fetchMovieTrailer(param);
+        var trailer_link = getTrailer(trailers.results)
+
+        header.innerHTML = `
+        <div class="naslov">
+            <a href=${movie.homepage} class="text-center text-danger">
+                <h2 style="color:white">${movie.title + second_name}</h2>
+                <h3 style="color:white"><i>"${movie.tagline}"</i></h3>
+            </a>
+        </div>
+        
+        <hr>
+        <img src="${"http://image.tmdb.org/t/p/original" + movie.backdrop_path}" class="img-fluid d-block mx-auto" style="max-width: 100%; height: auto;">
+        `
+
+        pregled.innerHTML = movie.overview
+        zanrovi = "<br>"
+        for (var k = 0; k < movie.genres.length; k++) {
+            zanrovi += " > " + movie.genres[k].name
+            if (k + 1 != movie.genres.length) {
+                zanrovi += "<br>"
+            }
+
+        }
+        budget = "Nepoznato"
+        if (movie.budget != 0) {
+            budget = movie.budget + " USD"
+        }
+        info.innerHTML = `
+        <br>
+        <h2>Informacije:</h2>
+        <p>
+        <table>
+            <li>Budzet: ${budget}</li>
+            <li>Zanrovi filma: ${zanrovi}</li>
+            <li>Rejting: ${movie.vote_average}/10 ★</li>
+        </table>
+        </p>`
+
+        if (typeof trailer_link != "undefined") {
+            trailer.innerHTML=`<iframe width="560" height="315" src="${trailer_link}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <hr>
+            <a href="${trailer_link}" target="_blank">
+                <button class="col-2 btn-close-white btn-outline-info">Trejler</button>
+            </a>`
+        }
+    }
+})
+$("#search-bar").submit(async function (event) {
+    event.preventDefault()
+    var values = $("#mySearchBar").val()
+    let target = await IDFromSearch(values)
+    window.location.replace(target)
+})

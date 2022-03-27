@@ -1,0 +1,169 @@
+.swiper-slide {
+  transition: 250ms all;
+}
+
+.swiper-wrapper {
+  padding: 10px 0px;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.08);
+  z-index: 1; /* Da bude na vrhu */
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Centriranje teksta vertiklano ~ SwiperJS */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.carousel-caption {
+    position: absolute;
+    z-index: 1;
+    display:table;
+    width:100%;
+    height:100%;
+}
+.carousel-size{
+    height: 50%;
+}
+.carousel-caption div {
+    display:table-cell;
+    vertical-align: middle;
+    text-align:center;
+}
+
+.trickcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+h2 {
+    font-family: Verdana !important;
+    color: white;
+    padding-bottom: 0.5em;
+}
+
+.site-heading{
+    background-color:rgba(140,140,140, 0.7);
+    padding-left: 3.5em;
+    padding-right: 3.5em;
+    padding-top:1.5em;
+    padding-bottom: 1.5em;
+
+}
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+.carousel-container {
+  width: 1280px;
+  margin: 50px auto;
+  min-height: 200%;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  .carousel-container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .carousel-container {
+    width: 85%;
+  }
+}
+.carousel-container .carousel-inner {
+  overflow: hidden;
+}
+.carousel-container .track {
+  display: inline-flex;
+  transition: transform 0.5s;
+}
+.carousel-container .card-container {
+  width: 12em;
+  flex-shrink: 0;
+  height: 17em;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+.carousel-container .card-container .card {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.nav button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.nav .prev {
+  left: -30px;
+  display: none;
+}
+.nav .prev.show {
+  display: block;
+}
+.nav .next {
+  right: -30px;
+}
+.nav .next.hide {
+  display: none;
+}
+
+.card > * {
+  flex: 1;
+}
+.card .img {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  height: 30%;
+}
+.card .info {
+  flex-basis: 15%;
+  background: #333;
+  color: #fff;
+  flex-grow: 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.slike{
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    background-color: black;
+}
